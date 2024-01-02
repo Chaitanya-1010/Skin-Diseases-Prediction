@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        .container {
+            display: flex;
+        }
+
+        .image-container,
+        .table-container {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .table-container {
+            box-sizing: border-box;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="prediction">
+        <h1>The above image is classified as {{prediction}} with {{confidence}}% confidence</h1>
+    </div>
+    <div class="container">
+        <div class="image-container">
+            <h1>Selected Image</h1>
+            <img src="{{input_file}}" alt="img">
+        </div>
+        <div class="table-container">
+            <h1>Dictionary Table</h1>
+            <h2>"{{pa}}"</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key, value in all_pred.items() %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+
+</html>
